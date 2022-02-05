@@ -8,10 +8,11 @@ public class Runner {
 		ll.insert(20);
 		ll.insert(21);
 		ll.insert(41);
-		ll.insertAtIndex(90,1);
-		ll.getAllElements();
-//		ll.deleteElementAtIndex(2);
+//		ll.insertAtIndex(90,1);
 //		ll.getAllElements();
+//		ll.getElementAtIndex(-5);
+		ll.deleteElementAtIndex(2);
+		ll.getAllElements();
 
 	}
 

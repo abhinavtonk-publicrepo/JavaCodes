@@ -7,9 +7,9 @@ public class LinkedList {
 	//getAllElements()
 	//getElementAtIndex(int index)
 	//deleteElementAtIndex(int index)
-	
+
 	// Wherever index are involved we will use for loop, else while loop
-	
+
 	Node refHead = null;
 
 	public void insert(int data) {// To insert at the end by default
@@ -37,18 +37,22 @@ public class LinkedList {
 		Node refNew = new Node();
 		refNew.data = data;
 		refNew.refNext = null;
-		
-		
+
+
 		Node refIter = refHead;
+
+		if(index<0) {
+			throw new RuntimeException("Index cannot be less than zero");
+		}
 
 		if(index==0) { // Insertion as First Element
 			refHead=refNew;
 			refNew.refNext = refIter;
 			return;
 		}
-		
+
 		if(refHead!=null) { // Insertion in Middle or as Last element
-			for(int i=0; i<index-1; i++) { //Because at index-2, retIter will point to node at index-1, hence we will go till index-1 only in loop 
+			for(int i=0; i<index-1; i++) { //Because at index-2 (on last iteration), retIter will point to node at index-1, hence we will go till (index-2) in loop 
 				if(refIter.refNext == null) {
 					throw new RuntimeException("Index provided is more than the size of linked list");
 				}
@@ -62,10 +66,14 @@ public class LinkedList {
 		}
 	}
 
-	public void getElementAtIndex(int index) {
+	public void getElementAtIndex(int index) {		
+		if(index<0) {
+			throw new RuntimeException("Index cannot be less than zero");
+		}
+
 		if(refHead!=null) {
 			Node refIter = refHead;
-			for(int i=0; i<index; i++) {
+			for(int i=0; i<index; i++) { //refIter will point to element at (index) in last iteration (at i = index-1)
 				if(refIter.refNext == null) {
 					throw new RuntimeException("Index provided is more than the size of linked list");
 				}
@@ -98,18 +106,23 @@ public class LinkedList {
 	// 2) Middle Element
 	// 3) Last Element
 	public void deleteElementAtIndex(int index) {
+		if(index<0) {
+			throw new RuntimeException("Index cannot be less than zero");
+		}
+
 		if(refHead!=null) {
 			Node refIter = refHead;
 			int itemDeleted = 0;
-			
+
 			if(index==0) { // Deletion of First Element
 				refHead= refHead.refNext;
 				refIter.refNext=null;
 				System.out.println("Element DELETED at index " + index + " = " + refIter.data);
 				return;
 			}
-			
-			for(int i=0; i<index; i++) { // Deletion of Middle and Last Element
+
+			// Deletion of Middle and Last Element
+			for(int i=0; i<index; i++) { //refIter will point to element at (index) in last iteration (at i = index-1)
 				if(refIter.refNext == null) {
 					throw new RuntimeException("Index provided is more than the size of linked list");
 
